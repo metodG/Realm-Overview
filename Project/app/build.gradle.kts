@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("io.realm.kotlin")
 }
 
 android {
@@ -40,7 +41,7 @@ android {
 }
 
 dependencies {
-
+    implementation("io.realm.kotlin:library-base:1.16.0") // ali najnovejša različica
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
