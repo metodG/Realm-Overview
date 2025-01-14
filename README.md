@@ -1,6 +1,6 @@
 <picture>
-    <source srcset="./images/logo-dark.svg" media="(prefers-color-scheme: dark)" alt="realm by MongoDB">
-    <img src="./images/logo.svg" alt="realm by MongoDB">
+    <source srcset="logo.png" media="(prefers-color-scheme: dark)" alt="realm by MongoDB">
+    <img src="logo.png" alt="realm by MongoDB">
 </picture>
 
 # Realm
