@@ -7,7 +7,7 @@
 
 Realm je knjižnica, ki je namenjena lokalnemu shranjevanju. Namen knjižnice je ustvariti lokalno podatkovno bazo, ki se jo potem uporablja kot vsako ostalo podatkovno bazo. Realm je odprtokodna objektna podatkovna baza, ki je v lasti Mongo Db. Leta 2024 septembra je Mongo DB napovedal opusčanja Realm podatkovne baze in zastaranje ter odstranitev njenih plačlivih storitev z koncem septembra leta 2025.
 
-## ![Icon](https://img.icons8.com/ios/20/000000/why.png) Zakaj izbrati Realm?
+## ![Icon](https://img.icons8.com/ios/20/000000/why-quest.png) Zakaj izbrati Realm?
 Realm je priljubljen zaradi naslednjih razlogov:
 - **Hitrost**: Deluje hitreje kot tradicionalne rešitve, kot sta SQLite in Room.
 - **Lokalna uporaba** : Deluje brez interneta, v primerjavi z nekaterimi oblačnimi rešitvami.
@@ -24,7 +24,7 @@ Realm je priljubljen zaradi naslednjih razlogov:
 - **Večja velikost aplikacije**: Dodajanje Realm-a lahko poveča velikost aplikacije.
 - **Zastarnje plačlivih funkcij**: Mongo DB podjetje se je odločilo, da neha aktivno razvijati Realm.
 
-## ![Icon](https://img.icons8.com/ios/20/000000/license.png) Licenca
+## ![Icon](https://img.icons8.com/ios/20/000000/certificate.png) Licenca
 Realm je na voljo pod licenco **Apache License 2.0**, kar pomeni, da je odprtokoden in brezplačen za uporabo. Premium funkcije, kot je sinhronizacija podatkov v realnem času, so na voljo kot plačljive storitve.
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/maintenance.png) Statistika in vzdrževanje
