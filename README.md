@@ -100,3 +100,77 @@ realm.writeBlocking {
     user?.let { delete(it) }
 }
 ```
+
+## ![Icon](https://img.icons8.com/ios/20/000000/example.png) Primeri opazovanja podatkov
+
+### Opazovanje sprememb na celotni bazi (Realm asFlow)
+Realm omogoča spremljanje globalnih sprememb v podatkovni bazi:
+```kotlin
+realm.asFlow()
+    .collect { realmChange: RealmChange<Realm> ->
+        when (realmChange) {
+            is InitialRealm -> println("Initial Realm")
+            is UpdatedRealm -> println("Realm updated")
+        }
+    }
+```
+
+### Opazovanje sprememb na posameznem objektu (RealmObject asFlow)
+Spremljanje sprememb na specifičnih objektih:
+```kotlin
+person.asFlow().collect { objChange: ObjectChange<Person> ->
+    when (objChange) {
+        is InitialObject -> println("Initial object: ${objChange.obj.name}")
+        is UpdatedObject -> println("Updated fields: ${objChange.changedFields}")
+        is DeletedObject -> println("Deleted object")
+    }
+}
+```
+
+### Opazovanje sprememb na seznamu (RealmList asFlow)
+Opazovanje dodanih, spremenjenih ali izbrisanih elementov v seznamu:
+```kotlin
+person.addresses.asFlow()
+    .collect { listChange: ListChange<List<String>> ->
+        when (listChange) {
+            is InitialList -> println("Initial list size: ${listChange.list.size}")
+            is UpdatedList -> println("Updated list: ${listChange.insertions}")
+            is DeletedList -> println("Deleted items: ${listChange.deletions}")
+        }
+    }
+```
+
+### Opazovanje rezultatov poizvedb (RealmQuery asFlow)
+Spremljanje sprememb rezultatov poizvedb:
+```kotlin
+realm.query<Person>("age > $0", 30).asFlow()
+    .collect { resultChange ->
+        println("Query results updated: ${resultChange.results}")
+    }
+```
+
+### Opazovanje enega elementa (RealmSingleQuery)
+Spremljanje sprememb specifičnega elementa:
+```kotlin
+realm.query<Person>("name == $0", "Carl").first().asFlow()
+    .collect { objChange ->
+        when (objChange) {
+            is InitialObject -> println("Initial object: ${objChange.obj?.name}")
+            is UpdatedObject -> println("Updated object fields: ${objChange.changedFields}")
+            is DeletedObject -> println("Deleted object")
+        }
+    }
+```
+
+Te funkcionalnosti omogočajo učinkovito in dinamično delo s podatki v realnem času, kar je eden izmed ključnih razlogov za uporabo knjižnice Realm.
+
+## ![Icon](https://img.icons8.com/ios/20/000000/more.png) Dodatne funkcionalnosti
+- **Sinhronizacija podatkov (Realm Sync)**: Samodejna sinhronizacija podatkov med lokalno bazo in oblakom.
+- **Podpora za več niti**: Varno delo z bazo podatkov v več niti.
+- **Šifriranje podatkov**: Omogoča varno hranjenje občutljivih podatkov.
+- **Podpora za platformo Kotlin Multiplatform (KMM)**: Enotna baza podatkov za Android in iOS.
+- **Transakcije**: Zagotavljanje atomskosti in konsistence operacij.
+- **Napredne poizvedbe**: Kompleksne poizvedbe s podporo za logične operatorje in primerjave.
+- **Podpora za migracije podatkov**: Enostavno posodabljanje strukture modelov.
+- **Podpora za reaktivne tokove (Reaktive)**: Integracija z orodji, kot so RxJava, Flow, in LiveData.
+
