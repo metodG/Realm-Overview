@@ -1,65 +1,176 @@
+<picture>
+    <source srcset="logo.png" media="(prefers-color-scheme: dark)" alt="realm by MongoDB">
+    <img src="logo.png" alt="realm by MongoDB">
+</picture>
+
 # Realm
 
-Realm je napredna knjižnica za lokalno shranjevanje podatkov, ki je zasnovana za preprosto uporabo, hiter dostop in brezhibno delovanje na mobilnih platformah, kot sta Android in iOS. Spodaj so vključene ključne informacije o Realm-u, razlogi za njegovo uporabo, prednosti in slabosti, ter informacije o vzdrževanju projekta.
+Realm je knjižnica, ki je namenjena lokalnemu shranjevanju. Namen knjižnice je ustvariti lokalno podatkovno bazo, ki se jo potem uporablja kot vsako ostalo podatkovno bazo. Realm je odprtokodna objektna podatkovna baza, ki je v lasti Mongo Db. Leta 2024 septembra je Mongo DB napovedal opusčanja Realm podatkovne baze in zastaranje ter odstranitev njenih plačlivih storitev z koncem septembra leta 2025.
 
----
-
-## Zakaj izbrati Realm?
+## ![Icon](https://img.icons8.com/ios/20/000000/why-quest.png) Zakaj izbrati Realm?
 Realm je priljubljen zaradi naslednjih razlogov:
 - **Hitrost**: Deluje hitreje kot tradicionalne rešitve, kot sta SQLite in Room.
-- **Preprosta integracija**: Nudi enostavne API-je, ki zmanjšujejo kompleksnost dela s podatki.
-- **Platformska podpora**: Podpira različne platforme, vključno z Android, iOS in .NET.
-- **Real-Time Sinhronizacija**: Vključuje možnost sinhronizacije podatkov med napravami (premium funkcionalnost).
+- **Lokalna uporaba** : Deluje brez interneta, v primerjavi z nekaterimi oblačnimi rešitvami.
 
----
-
-## Prednosti
+## ![Icon](https://img.icons8.com/ios/20/000000/positive-dynamic.png) Prednosti
 - **Preprost objektni model**: Delo neposredno z objekti brez potrebe po pretvarjanju v druge strukture.
 - **Visoka zmogljivost**: Hitri vpisi in poizvedbe v primerjavi s tradicionalnimi bazami podatkov.
 - **Podpora za več platform**: Uporabno na različnih ekosistemih.
 - **Enostavno vzdrževanje**: Manj kode za implementacijo in bolj čitljiva koda.
 
-## Slabosti
+## ![Icon](https://img.icons8.com/ios/20/000000/negative-dynamic.png) Slabosti
 - **Zaprt del kode**: Funkcije, kot je Realm Sync, niso del odprtokodne različice.
 - **Odvisnost od knjižnice**: Prehod na drugo rešitev je lahko zahteven.
 - **Večja velikost aplikacije**: Dodajanje Realm-a lahko poveča velikost aplikacije.
+- **Zastarnje plačlivih funkcij**: Mongo DB podjetje se je odločilo, da neha aktivno razvijati Realm.
 
----
-
-## Licenca
+## ![Icon](https://img.icons8.com/ios/20/000000/certificate.png) Licenca
 Realm je na voljo pod licenco **Apache License 2.0**, kar pomeni, da je odprtokoden in brezplačen za uporabo. Premium funkcije, kot je sinhronizacija podatkov v realnem času, so na voljo kot plačljive storitve.
 
----
+## ![Icon](https://img.icons8.com/ios/20/000000/maintenance.png) Statistika in vzdrževanje
 
-## Statistika in vzdrževanje
-- **Število uporabnikov**: Realm ima več milijonov uporabnikov po vsem svetu.
-- **Število razvijalcev**: K projektu prispeva več kot 100 razvijalcev.
-- **Zadnji popravek**: Projekt je redno vzdrževan, z zadnjimi spremembami objavljenimi pred nekaj tedni (preverite na [uradnem GitHub repozitoriju](https://github.com/realm/realm-java)).
-- **Skupnost**: Aktivna skupnost s številnimi prispevki in podporo.
+![GitHub last commit](https://img.shields.io/github/last-commit/realm/realm-kotlin)
 
----
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/realm/realm-kotlin)
 
-## Namestitev
-Za dodajanje Realm-a v vaš Android projekt:
+![GitHub contributors](https://img.shields.io/github/contributors/realm/realm-kotlin)
 
-```gradle
-dependencies {
-    implementation 'io.realm:realm-gradle-plugin:<latest_version>'
-}
-```
+## ![Icon](https://img.icons8.com/ios/20/000000/star.png) Število zvezdic in forkov
 
-Za iOS projekt:
+| **Stars**      | **Forks**   |
+|-----------------|-------------|
+| ![Stars](https://img.shields.io/github/stars/realm/realm-kotlin) | ![Forks](https://img.shields.io/github/forks/realm/realm-kotlin) |
 
-```swift
-pod 'RealmSwift', '~> <latest_version>'
-```
-
----
-
-## Dokumentacija in viri
+## ![Icon](https://img.icons8.com/ios/20/000000/book.png) Dokumentacija in viri
 - [Uradna dokumentacija Realm](https://www.mongodb.com/docs/realm/)
 - [GitHub repozitorij](https://github.com/realm/realm-java)
 
----
+## ![Icon](https://img.icons8.com/ios/20/000000/code.png) Primeri osnovnih funkcionalnosti
 
-Realm je odlična izbira za projekte, ki zahtevajo hitro, preprosto in zmogljivo lokalno shranjevanje podatkov, vendar zahteva previdno načrtovanje, če ga želite uporabljati za naprednejše funkcionalnosti.
+### Ustvarjanje objekta in shranjevanje podatkov
+```kotlin
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
+import io.realm.kotlin.types.RealmObject
+import io.realm.kotlin.types.annotations.PrimaryKey
+
+// Definicija modela
+class User : RealmObject {
+    @PrimaryKey
+    var id: String = ""
+    var name: String = ""
+}
+
+// Inicializacija
+val config = RealmConfiguration.Builder(schema = setOf(User::class)).build()
+val realm = Realm.open(config)
+
+// Shranjevanje podatkov
+realm.writeBlocking {
+    copyToRealm(User().apply {
+        id = "1"
+        name = "Janez Novak"
+    })
+}
+```
+
+### Pridobivanje podatkov
+```kotlin
+// Pridobivanje vseh uporabnikov
+val users = realm.query<User>().find()
+users.forEach { user ->
+    println(user.name)
+}
+```
+
+### Posodabljanje podatkov
+```kotlin
+// Posodabljanje obstoječega uporabnika
+realm.writeBlocking {
+    val user = query<User>("id == $0", "1").first().find()
+    user?.name = "Anton Kranjc"
+}
+```
+
+### Brisanje podatkov
+```kotlin
+// Brisanje uporabnika
+realm.writeBlocking {
+    val user = query<User>("id == $0", "1").first().find()
+    user?.let { delete(it) }
+}
+```
+
+## ![Icon](https://img.icons8.com/ios/20/000000/example.png) Primeri opazovanja podatkov
+
+### Opazovanje sprememb na celotni bazi (Realm asFlow)
+Realm omogoča spremljanje globalnih sprememb v podatkovni bazi:
+```kotlin
+realm.asFlow()
+    .collect { realmChange: RealmChange<Realm> ->
+        when (realmChange) {
+            is InitialRealm -> println("Initial Realm")
+            is UpdatedRealm -> println("Realm updated")
+        }
+    }
+```
+
+### Opazovanje sprememb na posameznem objektu (RealmObject asFlow)
+Spremljanje sprememb na specifičnih objektih:
+```kotlin
+person.asFlow().collect { objChange: ObjectChange<Person> ->
+    when (objChange) {
+        is InitialObject -> println("Initial object: ${objChange.obj.name}")
+        is UpdatedObject -> println("Updated fields: ${objChange.changedFields}")
+        is DeletedObject -> println("Deleted object")
+    }
+}
+```
+
+### Opazovanje sprememb na seznamu (RealmList asFlow)
+Opazovanje dodanih, spremenjenih ali izbrisanih elementov v seznamu:
+```kotlin
+person.addresses.asFlow()
+    .collect { listChange: ListChange<List<String>> ->
+        when (listChange) {
+            is InitialList -> println("Initial list size: ${listChange.list.size}")
+            is UpdatedList -> println("Updated list: ${listChange.insertions}")
+            is DeletedList -> println("Deleted items: ${listChange.deletions}")
+        }
+    }
+```
+
+### Opazovanje rezultatov poizvedb (RealmQuery asFlow)
+Spremljanje sprememb rezultatov poizvedb:
+```kotlin
+realm.query<Person>("age > $0", 30).asFlow()
+    .collect { resultChange ->
+        println("Query results updated: ${resultChange.results}")
+    }
+```
+
+### Opazovanje enega elementa (RealmSingleQuery)
+Spremljanje sprememb specifičnega elementa:
+```kotlin
+realm.query<Person>("name == $0", "Carl").first().asFlow()
+    .collect { objChange ->
+        when (objChange) {
+            is InitialObject -> println("Initial object: ${objChange.obj?.name}")
+            is UpdatedObject -> println("Updated object fields: ${objChange.changedFields}")
+            is DeletedObject -> println("Deleted object")
+        }
+    }
+```
+
+Te funkcionalnosti omogočajo učinkovito in dinamično delo s podatki v realnem času, kar je eden izmed ključnih razlogov za uporabo knjižnice Realm.
+
+## ![Icon](https://img.icons8.com/ios/20/000000/more.png) Dodatne funkcionalnosti
+- **Sinhronizacija podatkov (Realm Sync)**: Samodejna sinhronizacija podatkov med lokalno bazo in oblakom.
+- **Podpora za več niti**: Varno delo z bazo podatkov v več niti.
+- **Šifriranje podatkov**: Omogoča varno hranjenje občutljivih podatkov.
+- **Podpora za platformo Kotlin Multiplatform (KMM)**: Enotna baza podatkov za Android in iOS.
+- **Transakcije**: Zagotavljanje atomskosti in konsistence operacij.
+- **Napredne poizvedbe**: Kompleksne poizvedbe s podporo za logične operatorje in primerjave.
+- **Podpora za migracije podatkov**: Enostavno posodabljanje strukture modelov.
+- **Podpora za reaktivne tokove (Reaktive)**: Integracija z orodji, kot so RxJava, Flow, in LiveData.
+
