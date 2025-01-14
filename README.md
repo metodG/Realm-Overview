@@ -8,7 +8,6 @@ Realm je knjižnica, ki je namenjena lokalnemu shranjevanju. Namen knjižnice je
 Realm je priljubljen zaradi naslednjih razlogov:
 - **Hitrost**: Deluje hitreje kot tradicionalne rešitve, kot sta SQLite in Room.
 - **Lokalna uporaba** : Deluje brez interneta, v primerjavi z nekaterimi oblačnimi rešitvami.
-- **
 ---
 
 ## Prednosti
@@ -36,9 +35,9 @@ Realm je na voljo pod licenco **Apache License 2.0**, kar pomeni, da je odprtoko
 ---
 ## Število zvezdic, sledilcev, forkov
 
-| **Stars**      | **Followers** | **Forks**   |
-|-----------------|---------------|-------------|
-| ![Stars](https://img.shields.io/github/stars/realm/realm-kotlin) | ![Followers](https://img.shields.io/github/followers/realm/realm-kotlin) | ![Forks](https://img.shields.io/github/forks/realm/realm-kotlin) |
+| **Stars**      | **Forks**   |
+|-----------------|-------------|
+| ![Stars](https://img.shields.io/github/stars/realm/realm-kotlin) | ![Forks](https://img.shields.io/github/forks/realm/realm-kotlin) |
 
 ---
 
