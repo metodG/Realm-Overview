@@ -1,16 +1,13 @@
 # Realm
 
-Realm je napredna knjižnica za lokalno shranjevanje podatkov, ki je zasnovana za preprosto uporabo, hiter dostop in brezhibno delovanje na mobilnih platformah, kot sta Android in iOS. Spodaj so vključene ključne informacije o Realm-u, razlogi za njegovo uporabo, prednosti in slabosti, ter informacije o vzdrževanju projekta.
-
+Realm je knjižnica, ki je namenjena lokalnemu shranjevanju. Namen knjižnice je ustvariti lokalno podatkovno bazo, ki se jo potem uporablja kot vsako ostalo podatkovno bazo. Realm je odprtokodna objektna podatkovna baza, ki je v lasti Mongo Db. Leta 2024 septembra je Mongo DB napovedal opusčanja Realm podatkovne baze in zastaranje ter odstranitev njenih plačlivih storitev z koncem septembra leta 2025.
 ---
 
 ## Zakaj izbrati Realm?
 Realm je priljubljen zaradi naslednjih razlogov:
 - **Hitrost**: Deluje hitreje kot tradicionalne rešitve, kot sta SQLite in Room.
-- **Preprosta integracija**: Nudi enostavne API-je, ki zmanjšujejo kompleksnost dela s podatki.
-- **Platformska podpora**: Podpira različne platforme, vključno z Android, iOS in .NET.
-- **Real-Time Sinhronizacija**: Vključuje možnost sinhronizacije podatkov med napravami (premium funkcionalnost).
-
+- **Lokalna uporaba** : Deluje brez interneta, v primerjavi z nekaterimi oblačnimi rešitvami.
+- **
 ---
 
 ## Prednosti
@@ -23,7 +20,7 @@ Realm je priljubljen zaradi naslednjih razlogov:
 - **Zaprt del kode**: Funkcije, kot je Realm Sync, niso del odprtokodne različice.
 - **Odvisnost od knjižnice**: Prehod na drugo rešitev je lahko zahteven.
 - **Večja velikost aplikacije**: Dodajanje Realm-a lahko poveča velikost aplikacije.
-
+- **Zastarnje plačlivih funkcij**: Mongo DB podjetje se je odločilo, da neha aktivno razvijati Realm.
 ---
 
 ## Licenca
@@ -33,26 +30,14 @@ Realm je na voljo pod licenco **Apache License 2.0**, kar pomeni, da je odprtoko
 
 ## Statistika in vzdrževanje
 - **Število uporabnikov**: Realm ima več milijonov uporabnikov po vsem svetu.
-- **Število razvijalcev**: K projektu prispeva več kot 100 razvijalcev.
-- **Zadnji popravek**: Projekt je redno vzdrževan, z zadnjimi spremembami objavljenimi pred nekaj tedni (preverite na [uradnem GitHub repozitoriju](https://github.com/realm/realm-java)).
-- **Skupnost**: Aktivna skupnost s številnimi prispevki in podporo.
-
+- **Število razvijalcev**: Projekt ima/ je imel štiri aktivne razvijalce.
+- **Zadnji popravek**: Projekt je imel zadnji (resni) kommit  Sep 16, 2024
 ---
+## Število zvezdic, sledilcev, forkov
 
-## Namestitev
-Za dodajanje Realm-a v vaš Android projekt:
-
-```gradle
-dependencies {
-    implementation 'io.realm:realm-gradle-plugin:<latest_version>'
-}
-```
-
-Za iOS projekt:
-
-```swift
-pod 'RealmSwift', '~> <latest_version>'
-```
+| **Stars**      | **Followers** | **Forks**   |
+|-----------------|---------------|-------------|
+| ![Stars](https://img.shields.io/github/stars/realm/realm-java) | ![Followers](https://img.shields.io/github/followers/realm) | ![Forks](https://img.shields.io/github/forks/realm/realm-java) |
 
 ---
 
@@ -60,6 +45,4 @@ pod 'RealmSwift', '~> <latest_version>'
 - [Uradna dokumentacija Realm](https://www.mongodb.com/docs/realm/)
 - [GitHub repozitorij](https://github.com/realm/realm-java)
 
----
-
-Realm je odlična izbira za projekte, ki zahtevajo hitro, preprosto in zmogljivo lokalno shranjevanje podatkov, vendar zahteva previdno načrtovanje, če ga želite uporabljati za naprednejše funkcionalnosti.
+--- 
