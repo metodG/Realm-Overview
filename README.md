@@ -175,8 +175,80 @@ Te funkcionalnosti omogočajo učinkovito in dinamično delo s podatki v realnem
 - **Podpora za reaktivne tokove (Reaktive)**: Integracija z orodji, kot so RxJava, Flow, in LiveData.
 
 ## Prikaz na primeru iz vaj
+
+- **Dodajanje objekta v lokalno bazo v primeru, da smo brez interneta**
+
+  ```kotlin
+   class RealmBeehouse() : RealmObject{
+    @PrimaryKey var beeHouseUUID: String = ""
+    var name: String = ""
+    var coordinatesX: Double = 0.0
+    var coordinatesY: Double = 0.0
+    var numOfHives: Int = 0
+  }
+  ```
+  
+ ```kotlin
+    if (isInternetAvailable()) {
+            // Save to Firebase
+        } else {
+            // Save to Realm
+            val config = RealmConfiguration.Builder(schema = setOf(RealmBeehouse::class)).build()
+            val realm = Realm.open(config)
+            realm.writeBlocking  {
+                copyToRealm(RealmBeehouse().apply{
+                    beeHouseUUID = beeHouse.beeHouseUUID
+                    name = beeHouse.name
+                    coordinatesX = beeHouse.coordinatesX
+                    coordinatesY = beeHouse.coordinatesY
+                    numOfHives = beeHouse.numOfHives
+                })
+            }
+            Toast.makeText(requireContext(), "No internet. BeeHouse saved locally.", Toast.LENGTH_SHORT).show()
+            clearFields()
+        }
+  ```
+![image](https://github.com/user-attachments/assets/4b45516d-fbf2-4a83-92b4-eba70e66c4b2)
+
+- **Sinhronizacija ko se internet vrne**
+
+  ```kotlin 
+    fun syncLocalDataToFirebase() {
+            val config = RealmConfiguration.Builder(schema = setOf(RealmBeehouse::class)).build()
+            val realm = Realm.open(config)
+            val unsyncedBeeHouses = realm.query<RealmBeehouse>().find()
+    
+            if (unsyncedBeeHouses.isNotEmpty()) {
+                val database = FirebaseDatabase.getInstance()
+                val beeHouseRef = database.getReference("beeHouses")
+                unsyncedBeeHouses.forEach { beeHouse ->
+                    val notRealmBeehouse = BeeHouse(
+                        beeHouse.beeHouseUUID,
+                        beeHouse.name,
+                        beeHouse.coordinatesX,
+                        beeHouse.coordinatesY,
+                        beeHouse.numOfHives
+                    )
+                    beeHouseRef.push().setValue(notRealmBeehouse)
+                        .addOnSuccessListener {
+                            // Brisanje uporabnika
+                            Toast.makeText(this, "Beehousese synced with cloud", Toast.LENGTH_SHORT).show()
+                            println("Beehousese synced with clod")
+                            realm.writeBlocking {
+                                val user = query<RealmBeehouse>("beeHouseUUID == $0", beeHouse.beeHouseUUID).first().find()
+                                user?.let { delete(it) }
+                            }
+                            Toast.makeText(this, "Beehousese synced with cloud", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
+                        }
+                }
+            }
+  ```
+
 ![image](https://github.com/user-attachments/assets/073e0559-a610-4959-a3ce-8b7b7506f68a)
 
-![image](https://github.com/user-attachments/assets/4b45516d-fbf2-4a83-92b4-eba70e66c4b2)
+
 
 
