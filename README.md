@@ -174,3 +174,9 @@ Te funkcionalnosti omogočajo učinkovito in dinamično delo s podatki v realnem
 - **Podpora za migracije podatkov**: Enostavno posodabljanje strukture modelov.
 - **Podpora za reaktivne tokove (Reaktive)**: Integracija z orodji, kot so RxJava, Flow, in LiveData.
 
+## Prikaz na primeru iz vaj
+![image](https://github.com/user-attachments/assets/073e0559-a610-4959-a3ce-8b7b7506f68a)
+
+![image](https://github.com/user-attachments/assets/4b45516d-fbf2-4a83-92b4-eba70e66c4b2)
+
+
