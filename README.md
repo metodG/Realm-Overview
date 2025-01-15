@@ -5,13 +5,15 @@
 
 # Realm
 
-Realm je knjižnica, ki je namenjena lokalnemu shranjevanju. Namen knjižnice je ustvariti lokalno podatkovno bazo, ki se jo potem uporablja kot vsako ostalo podatkovno bazo. Realm je odprtokodna objektna podatkovna baza, ki je v lasti Mongo Db. Leta 2024 septembra je Mongo DB napovedal opusčanja Realm podatkovne baze in zastaranje ter odstranitev njenih plačlivih storitev z koncem septembra leta 2025.
+Realm je knjižnica, namenjena lokalnemu shranjevanju podatkov. Njen cilj je ustvariti lokalno podatkovno bazo, ki jo lahko uporabljamo kot katero koli drugo podatkovno bazo. Realm je odprtokodna objektna podatkovna baza, ki je v lasti podjetja MongoDB. Septembra 2024 je MongoDB napovedal ukinitev baze Realm ter prenehanje njenih plačljivih storitev konec septembra 2025.
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/why-quest.png) Zakaj izbrati Realm?
 Realm je priljubljen zaradi naslednjih razlogov:
-- **Hitrost**: Deluje hitreje kot tradicionalne rešitve, kot sta SQLite in Room.
-- **Lokalna uporaba** : Deluje brez interneta, v primerjavi z nekaterimi oblačnimi rešitvami.
-- **Preprostost uporabe** : Je objektno orientirana baza, ne potrejemo ORM
+
+- **Hitrost** :  Deluje hitreje kot tradicionalne rešitve, kot sta SQLite in Room.
+- **Lokalna uporabe** : Deluje brez povezave z internetom, za razliko od nekaterih rešitev v oblaku.
+- **Preprostost uporabe** :  Je objektno orientirana baza, ki ne potrebuje ORM.
+
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/positive-dynamic.png) Prednosti
 - **Preprost objektni model**: Delo neposredno z objekti brez potrebe po pretvarjanju v druge strukture.
