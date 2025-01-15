@@ -22,7 +22,7 @@ Realm je priljubljen zaradi naslednjih razlogov:
 ## ![Icon](https://img.icons8.com/ios/20/000000/negative-dynamic.png) Slabosti
 - **Zaprt del kode**: Funkcije, kot je Realm Sync, niso del odprtokodne različice.
 - **Zastarnje plačlivih funkcij**: Mongo DB podjetje se je odločilo, da neha aktivno razvijati Realm.
-- **Minimalni maintence** : Zaradi Atlas Sync zastaranja se je vzdrževanje z strani Mongo DB ustavilo, ali po njihovo zmanjšalo na minimalno
+- **Minimalni maintence** : Zaradi Atlas Sync zastaranja se je vzdrževanje z strani Mongo DB ustavilo
 - **Nepodprost različič Kotlina** : Ne podpira vseh verzij Kotlina
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/certificate.png) Licenca
