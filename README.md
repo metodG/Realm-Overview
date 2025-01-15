@@ -11,6 +11,7 @@ Realm je knjižnica, ki je namenjena lokalnemu shranjevanju. Namen knjižnice je
 Realm je priljubljen zaradi naslednjih razlogov:
 - **Hitrost**: Deluje hitreje kot tradicionalne rešitve, kot sta SQLite in Room.
 - **Lokalna uporaba** : Deluje brez interneta, v primerjavi z nekaterimi oblačnimi rešitvami.
+- **Preprostost uporabe** : Je objektno orientirana baza, ne potrejemo ORM
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/positive-dynamic.png) Prednosti
 - **Preprost objektni model**: Delo neposredno z objekti brez potrebe po pretvarjanju v druge strukture.
@@ -20,9 +21,9 @@ Realm je priljubljen zaradi naslednjih razlogov:
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/negative-dynamic.png) Slabosti
 - **Zaprt del kode**: Funkcije, kot je Realm Sync, niso del odprtokodne različice.
-- **Odvisnost od knjižnice**: Prehod na drugo rešitev je lahko zahteven.
-- **Večja velikost aplikacije**: Dodajanje Realm-a lahko poveča velikost aplikacije.
 - **Zastarnje plačlivih funkcij**: Mongo DB podjetje se je odločilo, da neha aktivno razvijati Realm.
+- **Minimalni maintence** : Zaradi Atlas Sync zastaranja se je vzdrževanje z strani Mongo DB ustavilo, ali po njihovo zmanjšalo na minimalno
+- **Nepodprost različič Kotlina** : Ne podpira vseh verzij Kotlina
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/certificate.png) Licenca
 Realm je na voljo pod licenco **Apache License 2.0**, kar pomeni, da je odprtokoden in brezplačen za uporabo. Premium funkcije, kot je sinhronizacija podatkov v realnem času, so na voljo kot plačljive storitve.
