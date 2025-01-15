@@ -110,8 +110,8 @@ Realm omogoča spremljanje globalnih sprememb v podatkovni bazi:
 realm.asFlow()
     .collect { realmChange: RealmChange<Realm> ->
         when (realmChange) {
-            is InitialRealm -> println("Initial Realm")
-            is UpdatedRealm -> println("Realm updated")
+            is InitialRealm -> println("realm je bil inicializiran")
+            is UpdatedRealm -> println("Realm je bil posodobljen")
         }
     }
 ```
@@ -119,11 +119,11 @@ realm.asFlow()
 ### Opazovanje sprememb na posameznem objektu (RealmObject asFlow)
 Spremljanje sprememb na specifičnih objektih:
 ```kotlin
-person.asFlow().collect { objChange: ObjectChange<Person> ->
+person.asFlow().collect { objChange: ObjectChange<User> ->
     when (objChange) {
-        is InitialObject -> println("Initial object: ${objChange.obj.name}")
-        is UpdatedObject -> println("Updated fields: ${objChange.changedFields}")
-        is DeletedObject -> println("Deleted object")
+        is InitialObject -> println("Objekt Inicializiran: ${objChange.obj.name}")
+        is UpdatedObject -> println("Posodobil polja : ${objChange.changedFields}")
+        is DeletedObject -> println("Objekt odstranje")
     }
 }
 ```
@@ -134,9 +134,9 @@ Opazovanje dodanih, spremenjenih ali izbrisanih elementov v seznamu:
 person.addresses.asFlow()
     .collect { listChange: ListChange<List<String>> ->
         when (listChange) {
-            is InitialList -> println("Initial list size: ${listChange.list.size}")
-            is UpdatedList -> println("Updated list: ${listChange.insertions}")
-            is DeletedList -> println("Deleted items: ${listChange.deletions}")
+            is InitialList -> println("Začetno stanje seznama: ${listChange.list.size}")
+            is UpdatedList -> println("Posodobljeno stranje seznama: ${listChange.insertions}")
+            is DeletedList -> println("Odstranjen seznam: ${listChange.deletions}")
         }
     }
 ```
@@ -144,21 +144,21 @@ person.addresses.asFlow()
 ### Opazovanje rezultatov poizvedb (RealmQuery asFlow)
 Spremljanje sprememb rezultatov poizvedb:
 ```kotlin
-realm.query<Person>("age > $0", 30).asFlow()
+realm.query<USer>("age > $0", 30).asFlow()
     .collect { resultChange ->
-        println("Query results updated: ${resultChange.results}")
+        println("Rezultati poizvedbe: ${resultChange.results}")
     }
 ```
 
 ### Opazovanje enega elementa (RealmSingleQuery)
 Spremljanje sprememb specifičnega elementa:
 ```kotlin
-realm.query<Person>("name == $0", "Carl").first().asFlow()
+realm.query<User>("name == $0", "Janez").first().asFlow()
     .collect { objChange ->
         when (objChange) {
-            is InitialObject -> println("Initial object: ${objChange.obj?.name}")
-            is UpdatedObject -> println("Updated object fields: ${objChange.changedFields}")
-            is DeletedObject -> println("Deleted object")
+            is InitialObject -> println("Inicializacija stanja: ${objChange.obj?.name}")
+            is UpdatedObject -> println("Posodobi polja na objektu: ${objChange.changedFields}")
+            is DeletedObject -> println("Objekt izbrisan")
         }
     }
 ```
