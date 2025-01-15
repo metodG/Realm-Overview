@@ -44,7 +44,7 @@ Realm je na voljo pod licenco **Apache License 2.0**, kar pomeni, da je odprtoko
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/book.png) Dokumentacija in viri
 - [Uradna dokumentacija Realm](https://www.mongodb.com/docs/realm/)
-- [GitHub repozitorij](https://github.com/realm/realm-java)
+- [GitHub repozitorij](https://github.com/realm/realm-kotlin)
 
 ## ![Icon](https://img.icons8.com/ios/20/000000/code.png) Primeri osnovnih funkcionalnosti
 
